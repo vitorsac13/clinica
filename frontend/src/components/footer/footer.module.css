@@ -1,0 +1,51 @@
+.footer {
+  background: midnightblue;
+  color: white;
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.footer h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+.footer button {
+  margin-top: 30px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: midnightblue;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.footer button:hover {
+  transform: scale(1.05);
+}
+
+.socialIcons {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.socialIcons a {
+  color: white;
+  font-size: 1.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px;
+  padding-bottom: 0px;
+  border-radius: 10%;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.socialIcons a:hover {
+  transform: scale(1.15);
+  background: white;
+  color: #1e88e5;
+}

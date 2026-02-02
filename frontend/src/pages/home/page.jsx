@@ -5,10 +5,7 @@ import {
   FaLeaf,
   FaUserMd,
   FaCheckCircle,
-  FaShieldAlt,
-  FaFacebookF, 
-  FaInstagram, 
-  FaLinkedinIn
+  FaShieldAlt
 } from "react-icons/fa"
 
 export default function Home() {
@@ -56,67 +53,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* MEDICAMENTOS GENÉRICOS */}
-      <section className={styles.section}>
-        <h2>Medicamentos Genéricos</h2>
-
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <FaPills className={styles.icon} />
-            <h3>Acessibilidade</h3>
-            <p>
-              Preços mais acessíveis sem abrir mão da qualidade.
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <FaCheckCircle className={styles.icon} />
-            <h3>Eficiência Comprovada</h3>
-            <p>
-              Mesma eficácia e segurança dos medicamentos de referência.
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <FaShieldAlt className={styles.icon} />
-            <h3>Segurança</h3>
-            <p>
-              Produção certificada e aprovada pelos órgãos reguladores.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className={styles.cta}>
-        <h2>Compromisso com a sua saúde</h2>
-        <p>
-          Nossa missão é oferecer atendimento médico para todas as pessoas.
-        </p>
-        <button>Fale conosco</button>
-
-        {/* REDES SOCIAIS */}
-        <div className={styles.socialIcons}>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <FaFacebookF />
-          </a>
-
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-          </a>
-
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            <FaLinkedinIn />
-          </a>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className={styles.footer}>
-        <p>© 2026 Clinica — Todos os direitos reservados</p>
-      </footer>
-
     </div>
   )
 }
