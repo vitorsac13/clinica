@@ -1,0 +1,147 @@
+.home {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HERO */
+.hero {
+  height: 70vh;
+  background: linear-gradient(135deg, #1e88e5, #43a047);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroContent {
+  text-align: center;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: white;
+  color: #1e88e5;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* SEÇÕES */
+.section {
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+}
+
+.card .icon {
+  font-size: 3rem;
+  color: #1e88e5;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  margin-bottom: 12px;
+}
+
+/* CTA */
+.cta {
+  background: #1e88e5;
+  color: white;
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+.cta button {
+  margin-top: 30px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #1e88e5;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.cta button:hover {
+  transform: scale(1.05);
+}
+
+.socialIcons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.socialIcons a {
+  color: white;
+  font-size: 1.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px;
+  padding-bottom: 0px;
+  border-radius: 10%;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.socialIcons a:hover {
+  transform: scale(1.15);
+  background: white;
+  color: #1e88e5;
+}
+
+/* FOOTER */
+.footer {
+  background: #0d47a1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
