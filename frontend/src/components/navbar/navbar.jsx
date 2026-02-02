@@ -3,7 +3,7 @@ import { LuShoppingCart, LuUserRound, LuMenu, LuHouse, LuLaptopMinimalCheck   } 
 import { Drawer } from '@mui/material'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from "../../../public/vite.svg"
+import logo from "../../vite.svg"
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
