@@ -1,5 +1,5 @@
 import styles from './navbar.module.css'
-import { LuShoppingCart, LuUserRound, LuMenu, LuHouse, LuLaptopMinimalCheck   } from "react-icons/lu"
+import { LuUserRound, LuMenu, LuHouse  } from "react-icons/lu"
 import { Drawer } from '@mui/material'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -24,10 +24,6 @@ export default function Navbar() {
 
             {/* MOBILE */}
             <div className={styles.mobileNavbarItems}>
-                <Link to="/cart">
-                    <LuShoppingCart className={styles.navbarIcon} />
-                </Link>
-
                 <LuMenu
                     className={styles.navbarIcon}
                     onClick={() => setOpenMenu(!openMenu)}

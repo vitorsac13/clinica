@@ -64,7 +64,7 @@ export default function Auth() {
                 <h1>SignUp</h1>
                 <button onClick={handleChangeFormType}>Do you already have an account? Click Here!</button>
                 <form onSubmit={handleSubmitForm}>
-                    <TextField required label="Full Name" type="text" name="fullName" onChange={handleFormDataChange}></TextField>
+                    <TextField required label="Full Name" type="text" name="fullname" onChange={handleFormDataChange}></TextField>
                     <TextField required label="Email" type="email" name="email" onChange={handleFormDataChange}></TextField>
                     <TextField required label="Password" type="password" name="password" onChange={handleFormDataChange}></TextField>
                     <TextField required label="Confirm Password" type="password" name="confirmPassword" onChange={handleFormDataChange}></TextField>
