@@ -143,7 +143,7 @@ export default function Profile() {
 			{/* CONSULTAS DO DIA */}
 			{selectedDate && (
 			<div className={styles.dayDetails}>
-				<h3>Consultas em {selectedDate}</h3>
+				<h3>Consultas em {new Date(selectedDate + "T00:00:00").toLocaleDateString("pt-BR")}</h3>
 
 				{consultasDoDia.length === 0 && <p>Nenhuma consulta</p>}
 
