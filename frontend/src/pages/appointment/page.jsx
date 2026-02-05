@@ -25,10 +25,9 @@ export default function Agendamentos() {
   }
 
   return (
-    <div className={styles.profileContainer}>
-      <div className={styles.profileCard}>
-        <h1 className={styles.profileName}>Agendamento de Consultas</h1>
-        <p className={styles.profileEmail}>Clínica Multiespecialidade</p>
+    <div className={styles.appointmentContainer}>
+      <div className={styles.appointmentCard}>
+        <h1 className={styles.appointmentName}>Agendamento de Consultas</h1>
 
         {/* FORMULÁRIO */}
         <form className={styles.form} onSubmit={handleSubmit}>

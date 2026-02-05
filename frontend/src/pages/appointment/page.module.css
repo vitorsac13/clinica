@@ -1,14 +1,14 @@
-.profileContainer {
+.appointmentContainer {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #020617, #0f172a);
+  background-color: white;
   padding: 40px;
 }
 
-.profileCard {
-  background: #111827;
+.appointmentCard {
+  background-color: midnightblue;
   padding: 30px;
   border-radius: 18px;
   width: 100%;
@@ -17,15 +17,12 @@
   color: white;
 }
 
-.profileName {
+.appointmentName {
   font-size: 28px;
   font-weight: bold;
-}
-
-.profileEmail {
-  color: #9ca3af;
   margin-bottom: 20px;
 }
+
 
 /* FORM */
 .form {
@@ -39,8 +36,8 @@
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #1f2937;
-  background: #020617;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .form input::placeholder {
@@ -95,8 +92,8 @@
 }
 
 .table th {
-  background: #020617;
-  color: #38bdf8;
+  background-color: white;
+  color: black;
 }
 
 .table tr:hover {
@@ -106,5 +103,5 @@
 .empty {
   text-align: center;
   padding: 15px;
-  color: #9ca3af;
+  color: white;
 }
