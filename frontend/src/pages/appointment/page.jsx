@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styles from "./page.module.css"
 
-export default function Agendamentos() {
+export default function Appointment() {
   const [form, setForm] = useState({
     paciente: "",
     especialidade: "",
@@ -10,7 +10,7 @@ export default function Agendamentos() {
     hora: "",
   })
 
-  const [agendamentos, setAgendamentos] = useState([])
+  const [agendamentos, setAppointment] = useState([])
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -20,7 +20,7 @@ export default function Agendamentos() {
     e.preventDefault()
     if (!form.paciente) return alert("Informe o nome do paciente")
 
-    setAgendamentos([...agendamentos, { id: Date.now(), ...form }])
+    setAppointment([...agendamentos, { id: Date.now(), ...form }])
     setForm({ paciente: "", especialidade: "", medico: "", data: "", hora: "" })
   }
 
