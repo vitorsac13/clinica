@@ -17,6 +17,7 @@ export default function Navbar() {
                 </div>
 
                 <div className={styles.navbarRight}>
+                    <Link to="/appointment">Agendamento</Link>
                     <Link to="/"><LuHouse className={styles.navbarIcon} /></Link>
                     <Link to="/profile"><LuUserRound className={styles.navbarIcon} /></Link>
                 </div>

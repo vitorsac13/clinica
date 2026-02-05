@@ -1,0 +1,110 @@
+.profileContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  padding: 40px;
+}
+
+.profileCard {
+  background: #111827;
+  padding: 30px;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+  color: white;
+}
+
+.profileName {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.profileEmail {
+  color: #9ca3af;
+  margin-bottom: 20px;
+}
+
+/* FORM */
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: white;
+}
+
+.form input::placeholder {
+  color: #6b7280;
+}
+
+.form button {
+  grid-column: span 2;
+}
+
+/* BOTÕES */
+.btn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #2563eb;
+  color: white;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+.adminBtn {
+  background: #16a34a;
+}
+
+.adminBtn:hover {
+  background: #15803d;
+}
+
+/* TABELA */
+.tableTitle {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #1f2937;
+  text-align: left;
+}
+
+.table th {
+  background: #020617;
+  color: #38bdf8;
+}
+
+.table tr:hover {
+  background: #020617;
+}
+
+.empty {
+  text-align: center;
+  padding: 15px;
+  color: #9ca3af;
+}
