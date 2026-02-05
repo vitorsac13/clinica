@@ -4,119 +4,160 @@ import authServices from "../../services/auth"
 import styles from './page.module.css'
 
 export default function Profile() {
-  const { logout } = authServices()
-  const navigate = useNavigate()
-  const authData = JSON.parse(localStorage.getItem("auth"))
+    const { logout } = authServices()
+    const navigate = useNavigate()
+    const authData = JSON.parse(localStorage.getItem("auth"))
 
-  const [consultas, setConsultas] = useState([])
-  const [selectedDate, setSelectedDate] = useState(null)
+    const [consultas, setConsultas] = useState([])
+    const [currentDate, setCurrentDate] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(null)
 
-  useEffect(() => {
-    if (!authData) navigate("/auth")
-  }, [authData, navigate])
+    useEffect(() => {
+        if (!authData) navigate("/auth")
+    }, [authData, navigate])
 
-  useEffect(() => {
-    // SIMULA CONSULTAS DO BACKEND
-    setConsultas([
-      {
-        id: 1,
-        pacienteEmail: authData?.user?.email,
-        medico: "Dr. João Cardoso",
-        especialidade: "Cardiologia",
-        data: "2026-02-10",
-        hora: "14:00",
-      },
-      {
-        id: 2,
-        pacienteEmail: authData?.user?.email,
-        medico: "Dra. Ana Lima",
-        especialidade: "Dermatologia",
-        data: "2026-02-15",
-        hora: "09:30",
-      },
-    ])
-  }, [])
+    useEffect(() => {
+        // SIMULA CONSULTAS DO BACKEND
+        setConsultas([
+        {
+            id: 1,
+            pacienteEmail: authData?.user?.email,
+            medico: "Dr. João Cardoso",
+            especialidade: "Cardiologia",
+            data: "2026-02-10",
+            hora: "14:00",
+        },
+        {
+            id: 2,
+            pacienteEmail: authData?.user?.email,
+            medico: "Dra. Ana Lima",
+            especialidade: "Dermatologia",
+            data: "2026-02-15",
+            hora: "09:30",
+        },
+        ])
+    }, [])
 
-  const handleLogout = () => {
-    logout()
-    navigate("/")
-  }
+  	// CONSULTAS DO DIA
+    const consultasDoDia = consultas.filter(c => c.data === selectedDate)
 
-  const handleEdit = () => navigate("/admin")
+    // FUNÇÕES DE NAVEGAÇÃO
+    const prevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))
+    }
 
-  // GERAR CALENDÁRIO DO MÊS
-  const daysInMonth = new Date().getDate()
-  const month = new Date().getMonth()
-  const year = new Date().getFullYear()
+    const nextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))
+    }
 
-  const calendarDays = Array.from({ length: 31 }, (_, i) => i + 1)
+    const handleLogout = () => {
+        logout()
+        navigate("/")
+    }
 
-  const consultasDoDia = consultas.filter(c => c.data === selectedDate)
+	const handleEdit = () => navigate("/admin")
 
-  return (
-    <div className={styles.profileContainer}>
-      <div className={styles.profileCard}>
+	// GERAR DIAS DO MÊS
+	const year = currentDate.getFullYear()
+	const month = currentDate.getMonth()
 
-        {/* PERFIL */}
-        <div className={styles.profileAvatar}>
-          {authData?.user?.email?.charAt(0).toUpperCase()}
-        </div>
+	const firstDay = new Date(year, month, 1).getDay() // 0 = domingo
+	const daysInMonth = new Date(year, month + 1, 0).getDate()
 
-        <h1 className={styles.profileName}>
-          {authData?.user?.fullname || "User"}
-        </h1>
+	const calendarDays = []
 
-        <p className={styles.profileEmail}>{authData?.user?.email}</p>
+	// Dias vazios antes do mês começar
+	for (let i = 0; i < firstDay; i++) {
+	calendarDays.push(null)
+	}
 
-        <div className={styles.profileAction}>
-          {authData?.user?.role === 'admin' && (
-            <button className={`${styles.btn} ${styles.adminBtn}`} onClick={handleEdit}>
-              Admin
-            </button>
-          )}
-          <button className={styles.btn} onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
+	// Dias do mês
+	for (let day = 1; day <= daysInMonth; day++) {
+	calendarDays.push(day)
+	}
 
-        {/* AGENDA GOOGLE CALENDAR */}
-        <h2 className={styles.calendarTitle}>📅 Minha Agenda</h2>
+	return (
+		<div className={styles.profileContainer}>
+		<div className={styles.profileCard}>
 
-        <div className={styles.calendarGrid}>
-          {calendarDays.map(day => {
-            const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`
-            const hasConsulta = consultas.some(c => c.data === dateStr)
+			{/* PERFIL */}
+			<div className={styles.profileAvatar}>
+			{authData?.user?.email?.charAt(0).toUpperCase()}
+			</div>
 
-            return (
-              <div
-                key={day}
-                className={`${styles.calendarDay} ${hasConsulta ? styles.hasConsulta : ""}`}
-                onClick={() => setSelectedDate(dateStr)}
-              >
-                {day}
-              </div>
-            )
-          })}
-        </div>
+			<h1 className={styles.profileName}>
+			{authData?.user?.fullname || "User"}
+			</h1>
 
-        {/* CONSULTAS DO DIA */}
-        {selectedDate && (
-          <div className={styles.dayDetails}>
-            <h3>Consultas em {selectedDate}</h3>
+			<p className={styles.profileEmail}>{authData?.user?.email}</p>
 
-            {consultasDoDia.length === 0 && <p>Nenhuma consulta</p>}
+			<div className={styles.profileAction}>
+			{authData?.user?.role === 'admin' && (
+				<button className={`${styles.btn} ${styles.adminBtn}`} onClick={handleEdit}>
+				Admin
+				</button>
+			)}
+			<button className={styles.btn} onClick={handleLogout}>
+				Logout
+			</button>
+			</div>
 
-            {consultasDoDia.map(c => (
-              <div key={c.id} className={styles.consultaCard}>
-                <p><b>Médico:</b> {c.medico}</p>
-                <p><b>Especialidade:</b> {c.especialidade}</p>
-                <p><b>Hora:</b> {c.hora}</p>
-              </div>
-            ))}
-          </div>
-        )}
+			{/* 🗓️ AGENDA GOOGLE CALENDAR REAL */}
+			<h2 className={styles.calendarTitle}>📅 Minha Agenda</h2>
 
-      </div>
-    </div>
-  )
+			<div className={styles.calendarHeader}>
+			<button className={styles.navBtn} onClick={prevMonth}>◀</button>
+			<h3>
+				{currentDate.toLocaleString("pt-BR", { month: "long", year: "numeric" })}
+			</h3>
+			<button className={styles.navBtn} onClick={nextMonth}>▶</button>
+			</div>
+
+			{/* DIAS DA SEMANA */}
+			<div className={styles.weekDays}>
+			{["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"].map(d => (
+				<div key={d} className={styles.weekDay}>{d}</div>
+			))}
+			</div>
+
+			{/* GRID DO CALENDÁRIO */}
+			<div className={styles.calendarGrid}>
+			{calendarDays.map((day, index) => {
+				if (!day) return <div key={index} className={styles.emptyDay}></div>
+
+				const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
+				const hasConsulta = consultas.some(c => c.data === dateStr)
+
+				return (
+				<div
+					key={day}
+					className={`${styles.calendarDay} ${hasConsulta ? styles.hasConsulta : ""}`}
+					onClick={() => setSelectedDate(dateStr)}
+				>
+					{day}
+				</div>
+				)
+			})}
+			</div>
+
+			{/* CONSULTAS DO DIA */}
+			{selectedDate && (
+			<div className={styles.dayDetails}>
+				<h3>Consultas em {selectedDate}</h3>
+
+				{consultasDoDia.length === 0 && <p>Nenhuma consulta</p>}
+
+				{consultasDoDia.map(c => (
+				<div key={c.id} className={styles.consultaCard}>
+					<p><b>Médico:</b> {c.medico}</p>
+					<p><b>Especialidade:</b> {c.especialidade}</p>
+					<p><b>Hora:</b> {c.hora}</p>
+				</div>
+				))}
+			</div>
+			)}
+
+		</div>
+		</div>
+	)
 }

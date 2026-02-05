@@ -1,21 +1,137 @@
-/* CALENDAR */
-.calendarTitle {
-  margin-top: 30px;
-  font-size: 22px;
-  font-weight: bold;
+.profileContainer {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8e8f8, #dcdcfc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.calendarGrid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+.profileCard {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.profileAvatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: midnightblue;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+}
+
+.profileName {
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;
+    color: #111827;
+}
+
+.profileEmail {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.profileAction {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.adminBtn {
+    color: white;
+    background-color: midnightblue;
+}
+
+.adminBtn:hover {
+    background-color: #163a9c;
+}
+
+.btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: midnightblue;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+/* HEADER */
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 15px;
 }
 
+.navBtn {
+  background: midnightblue;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* DIAS DA SEMANA */
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #6b7280;
+}
+
+.weekDay {
+  padding: 5px;
+}
+
+/* GRID CALENDÁRIO */
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
 .calendarDay {
-  background: #020617;
+  background: white;
   border: 1px solid #1f2937;
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
   text-align: center;
   cursor: pointer;
@@ -25,25 +141,31 @@
 
 .calendarDay:hover {
   background: #1e293b;
+  color: white;
 }
 
 /* DIA COM CONSULTA */
 .hasConsulta {
-  background: #2563eb;
+  background: midnightblue;
   color: white;
 }
 
-/* DETALHES DO DIA */
+/* DIAS VAZIOS */
+.emptyDay {
+  background: transparent;
+}
+
+/* DETALHES */
 .dayDetails {
   margin-top: 20px;
-  background: #020617;
+  background: midnightblue;
+  color: white;
   padding: 15px;
   border-radius: 12px;
-  border: 1px solid #1f2937;
 }
 
 .consultaCard {
-  background: #111827;
+  background: midnightblue;
   padding: 10px;
   border-radius: 10px;
   margin-top: 8px;
