@@ -1,89 +1,50 @@
-.profileContainer {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #e8e8f8, #dcdcfc);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
+/* CALENDAR */
+.calendarTitle {
+  margin-top: 30px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.profileCard {
-    background: #ffffff;
-    width: 100%;
-    max-width: 420px;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    text-align: center;
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 15px;
 }
 
-.profileAvatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: steelblue;
-    color: #ffffff;
-    font-size: 2.5rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem auto;
+.calendarDay {
+  background: #020617;
+  border: 1px solid #1f2937;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-.profileName {
-    font-size: 1.6rem;
-    margin-bottom: 0.25rem;
-    color: #111827;
+.calendarDay:hover {
+  background: #1e293b;
 }
 
-.profileEmail {
-    font-size: 0.95rem;
-    color: #6b7280;
-    margin-bottom: 2rem;
+/* DIA COM CONSULTA */
+.hasConsulta {
+  background: #2563eb;
+  color: white;
 }
 
-.profileAction {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 100%;
+/* DETALHES DO DIA */
+.dayDetails {
+  margin-top: 20px;
+  background: #020617;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
 }
 
-.adminBtn {
-    color: white;
-    background-color: steelblue;
-}
-
-.adminBtn:hover {
-    background-color: #163a9c;
-}
-
-.btn {
-    padding: 0.6rem 1.4rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    
-}
-
-.btn-secondary {
-    background: #e5e7eb;
-    color: #111827;
-}
-
-.btn-secondary:hover {
-    background: #d1d5db;
-}
-
-.btn-danger {
-    background: #ef4444;
-    color: #ffffff;
-}
-
-.btn-danger:hover {
-    background: #dc2626;
+.consultaCard {
+  background: #111827;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 8px;
 }
