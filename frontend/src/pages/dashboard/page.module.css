@@ -1,0 +1,85 @@
+.dashboardContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+  padding: 40px;
+}
+
+.dashboardCard {
+  background: #111827;
+  color: white;
+  padding: 30px;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 1100px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.dashboardTitle {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.dashboardSubtitle {
+  color: #9ca3af;
+  margin-bottom: 20px;
+}
+
+/* GRID DE MÉTRICAS */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.statCard {
+  background: #020617;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+}
+
+.statCard h3 {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.statCard span {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* TABELA */
+.tableTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.table th {
+  color: #38bdf8;
+}
+
+/* STATUS */
+.statusConfirmado {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.statusPendente {
+  color: #facc15;
+  font-weight: bold;
+}

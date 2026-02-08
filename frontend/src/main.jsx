@@ -8,6 +8,7 @@ import Home from './pages/home/page.jsx'
 import Profile from './pages/profile/page.jsx'
 import Auth from './pages/auth/page.jsx'
 import Appointment from './pages/appointment/page.jsx'
+import Dashboard from "./pages/dashboard/page.jsx"
 
 const pages = createBrowserRouter([
 	{
@@ -18,6 +19,7 @@ const pages = createBrowserRouter([
 			{ path: '/profile', element: <Profile /> },
       		{ path: '/auth', element: <Auth /> },
 			{ path: '/appointment', element: <Appointment /> },
+			{ path: '/dashboard', element: <Dashboard />}
 		]
 	}
 ])

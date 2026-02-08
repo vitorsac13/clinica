@@ -55,6 +55,7 @@ export default function Profile() {
         navigate("/")
     }
 
+	const handleDashboard = () => navigate("/dashboard")
 	const handleEdit = () => navigate("/admin")
 
 	// GERAR DIAS DO MÊS
@@ -93,10 +94,23 @@ export default function Profile() {
 
 			<div className={styles.profileAction}>
 			{authData?.user?.role === 'admin' && (
-				<button className={`${styles.btn} ${styles.adminBtn}`} onClick={handleEdit}>
-				Admin
+				<>
+				<button
+					className={`${styles.btn} ${styles.adminBtn}`}
+					onClick={handleDashboard}
+				>
+					Dashboard
 				</button>
+
+				<button
+					className={`${styles.btn} ${styles.adminBtn}`}
+					onClick={handleEdit}
+				>
+					Admin
+				</button>
+				</>
 			)}
+
 			<button className={styles.btn} onClick={handleLogout}>
 				Logout
 			</button>
