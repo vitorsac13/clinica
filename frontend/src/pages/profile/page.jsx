@@ -102,8 +102,8 @@ export default function Profile() {
 			</button>
 			</div>
 
-			{/* 🗓️ AGENDA GOOGLE CALENDAR REAL */}
-			<h2 className={styles.calendarTitle}>📅 Minha Agenda</h2>
+			{/* AGENDA GOOGLE CALENDAR */}
+			<h2 className={styles.calendarTitle}>Minhas Consultas</h2>
 
 			<div className={styles.calendarHeader}>
 			<button className={styles.navBtn} onClick={prevMonth}>◀</button>

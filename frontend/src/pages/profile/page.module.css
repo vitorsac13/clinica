@@ -5,6 +5,8 @@
     align-items: center;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .profileCard {
@@ -89,6 +91,10 @@
 }
 
 /* HEADER */
+.calendarTitle {
+    margin-top: 30px;
+}
+
 .calendarHeader {
   display: flex;
   align-items: center;
