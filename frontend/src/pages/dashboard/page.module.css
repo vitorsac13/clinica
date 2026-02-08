@@ -1,110 +1,136 @@
-/* CONTAINER */
-.dashboardContainer {
-  min-height: 100vh;
+.dashboardWrapper {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-  padding: 40px;
-  font-family: "Inter", sans-serif;
+  height: 100vh;
+  background: #f5f7fb;
+  font-family: Inter, sans-serif;
 }
 
-/* CARD PRINCIPAL */
-.dashboardCard {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  color: #0f172a;
-  padding: 30px;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 1200px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-  border: 1px solid rgba(255,255,255,0.4);
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: midnightblue;
+  color: white;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* TITULOS */
-.dashboardTitle {
-  font-size: 30px;
-  font-weight: 700;
-  color: #020617;
+.logo {
+  font-size: 22px;
+  font-weight: bold;
   margin-bottom: 30px;
 }
 
-.dashboardSubtitle {
-  color: #64748b;
-  margin-bottom: 25px;
+.sidebar nav button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
   font-size: 14px;
+  width: 100%;
+  text-align: left;
+  transition: 0.2s;
 }
 
-/* GRID DE MÉTRICAS */
+.sidebar nav button:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.logoutBtn {
+  background: #dc2626;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* MAIN */
+.dashboardMain {
+  flex: 1;
+  padding: 35px;
+  overflow-y: auto;
+}
+
+/* TITLES */
+.pageTitle {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.pageSubtitle {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.sectionTitle {
+  margin-top: 35px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* MÉTRICAS */
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-/* CARD MÉTRICAS */
 .statCard {
-  background: linear-gradient(135deg, midnightblue, #004ac0);
-  color: white;
+  background: white;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-left: 6px solid midnightblue;
+  transition: 0.2s;
 }
 
 .statCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  transform: translateY(-3px);
 }
 
 .statCard h3 {
   font-size: 13px;
-  color: #cbd5f5;
-  margin-bottom: 6px;
+  color: #6b7280;
 }
 
 .statCard span {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
 }
 
-/* TABELA */
-.tableTitle {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #020617;
-}
-
+/* TABLE */
 .table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.table th,
-.table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid #e2e8f0;
-  font-size: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
 .table th {
   background: midnightblue;
   color: white;
+  padding: 14px;
   text-align: left;
 }
 
-.table tr:hover {
-  background: #f1f5f9;
+.table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* STATUS */
 .statusConfirmado {
   color: #16a34a;
   font-weight: bold;
@@ -113,93 +139,4 @@
 .statusPendente {
   color: #facc15;
   font-weight: bold;
-}
-
-/* CALENDÁRIO */
-.calendarTitle {
-  margin-top: 30px;
-  font-size: 22px;
-  font-weight: 600;
-  color: #020617;
-}
-
-.calendarHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 12px 0;
-}
-
-.calendarHeader button {
-  background: midnightblue;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.calendarHeader button:hover {
-  background: #1e293b;
-}
-
-/* DIAS DA SEMANA */
-.weekDays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  font-weight: 600;
-  text-align: center;
-  color: #64748b;
-  margin-bottom: 6px;
-}
-
-/* GRID CALENDÁRIO */
-.calendarGrid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-}
-
-.calendarDay {
-  background: white;
-  border: 1px solid #e2e8f0;
-  padding: 12px;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.calendarDay:hover {
-  background: #020617;
-  color: white;
-}
-
-/* DIA COM CONSULTA */
-.hasConsulta {
-  background: linear-gradient(135deg, #020617, #1e40af);
-  color: white;
-  border: none;
-}
-
-/* DETALHES DO DIA */
-.dayDetails {
-  margin-top: 18px;
-  background: midnightblue;
-  padding: 16px;
-  border-radius: 14px;
-  color: white;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-/* CARD CONSULTA */
-.consultaCard {
-  background: midnightblue;
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 8px;
-  border-left: 4px solid #004ac0;
 }
