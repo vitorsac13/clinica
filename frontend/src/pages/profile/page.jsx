@@ -21,7 +21,7 @@ export default function Profile() {
         setConsultas([
         {
             id: 1,
-            pacienteEmail: authData?.user?.email,
+            email: authData?.user?.email,
             medico: "Dr. João Cardoso",
             especialidade: "Cardiologia",
             data: "2026-02-10",
@@ -29,7 +29,7 @@ export default function Profile() {
         },
         {
             id: 2,
-            pacienteEmail: authData?.user?.email,
+            email: authData?.user?.email,
             medico: "Dra. Ana Lima",
             especialidade: "Dermatologia",
             data: "2026-02-15",
@@ -149,6 +149,7 @@ export default function Profile() {
 
 				{consultasDoDia.map(c => (
 				<div key={c.id} className={styles.consultaCard}>
+					<p><b>Paciente:</b> {c.email}</p>
 					<p><b>Médico:</b> {c.medico}</p>
 					<p><b>Especialidade:</b> {c.especialidade}</p>
 					<p><b>Hora:</b> {c.hora}</p>
