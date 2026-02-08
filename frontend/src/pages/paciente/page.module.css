@@ -1,0 +1,76 @@
+.container {
+	min-height: 100vh;
+	background: #f5f7fb;
+	display: flex;
+	justify-content: center;
+	padding: 40px;
+}
+
+.card {
+	width: 100%;
+	max-width: 1200px;
+	background: white;
+	padding: 25px;
+	border-radius: 18px;
+	box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+h1 {
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+
+.topBar {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+input {
+	padding: 10px;
+	border-radius: 8px;
+	border: 1px solid #d1d5db;
+	width: 260px;
+}
+
+.addBtn {
+	background: midnightblue;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table th {
+	background: midnightblue;
+	color: white;
+	padding: 12px;
+	text-align: left;
+}
+
+.table td {
+	padding: 12px;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.editBtn {
+	background: #facc15;
+	border: none;
+	padding: 6px 10px;
+	border-radius: 6px;
+	margin-right: 6px;
+}
+
+.deleteBtn {
+	background: #dc2626;
+	color: white;
+	border: none;
+	padding: 6px 10px;
+	border-radius: 6px;
+}
