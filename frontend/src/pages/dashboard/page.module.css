@@ -140,3 +140,71 @@
   color: #facc15;
   font-weight: bold;
 }
+
+/* CALENDAR */
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.calendarHeader button {
+  background: midnightblue;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-weight: bold;
+  text-align: center;
+  color: #6b7280;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.calendarDay {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.calendarDay:hover {
+  background: #f1f5f9;
+}
+
+.hasConsulta {
+  background: midnightblue;
+  color: white;
+}
+
+.dayDetails {
+  margin-top: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.consultaCard {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border-left: 4px solid midnightblue;
+}
