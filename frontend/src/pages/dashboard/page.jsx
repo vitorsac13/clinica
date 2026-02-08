@@ -29,6 +29,12 @@ export default function Dashboard() {
     const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1))
     const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1))
 
+    useEffect(() => {
+      if (!auth || auth.user.role !== "admin") {
+        navigate("/profile")
+      }
+    }, [])
+
     return (
         <div className={styles.dashboardWrapper}>
 

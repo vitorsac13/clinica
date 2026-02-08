@@ -14,6 +14,12 @@ export default function Paciente() {
     p.nome.toLowerCase().includes(search.toLowerCase())
   )
 
+  useEffect(() => {
+    if (!auth || auth.user.role !== "admin") {
+      navigate("/profile")
+    }
+  }, [])
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>

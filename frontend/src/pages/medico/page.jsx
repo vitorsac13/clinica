@@ -1,12 +1,18 @@
 import { useState } from "react"
 import styles from "./medicos.module.css"
 
-export default function Medicos() {
+export default function Medico() {
 
   const [medicos, setMedicos] = useState([
     { id: 1, nome: "Dr. João Cardoso", especialidade: "Cardiologia", crm: "12345-SP" },
     { id: 2, nome: "Dra. Ana Lima", especialidade: "Dermatologia", crm: "54321-SP" }
   ])
+
+  useEffect(() => {
+    if (!auth || auth.user.role !== "admin") {
+      navigate("/profile")
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
