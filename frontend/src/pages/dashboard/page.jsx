@@ -38,7 +38,6 @@ export default function Dashboard() {
 
             <nav>
             <button><LuHouse size={18}/> Dashboard</button>
-            <button><LuCalendar size={18}/> Agenda Geral</button>
             <button><LuCircleUser size={18}/> Pacientes</button>
             <button><LuStethoscope size={18}/> Médicos</button>
             </nav>
