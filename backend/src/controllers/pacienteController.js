@@ -17,11 +17,10 @@ export default class PacienteController {
         }
     }
 
-    async deletePaciente(pacienteId){
-        try {
-            const result = await this.dao.deletePaciente(pacienteId)
-            return ok(result)
-
+    async createPaciente(pacienteData){
+        try{
+        const result = await dao.createPaciente(pacienteData)
+        return ok(result)
         } catch (error) {
             return serverError(error)
         }
@@ -36,4 +35,14 @@ export default class PacienteController {
             return serverError(error)
         }
     }
+
+    async deletePaciente(pacienteId){
+        try {
+            const result = await this.dao.deletePaciente(pacienteId)
+            return ok(result)
+
+        } catch (error) {
+            return serverError(error)
+        }
+    }    
 }
