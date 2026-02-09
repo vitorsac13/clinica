@@ -17,11 +17,10 @@ export default class MedicoController {
         }
     }
 
-    async deleteMedico(medicoId){
-        try {
-            const result = await this.dao.deleteMedico(medicoId)
-            return ok(result)
-
+    async createMedico(medicoData){
+        try{
+        const result = await dao.createMedico(medicoData)
+        return ok(result)
         } catch (error) {
             return serverError(error)
         }
@@ -36,4 +35,14 @@ export default class MedicoController {
             return serverError(error)
         }
     }
+
+    async deleteMedico(medicoId){
+        try {
+            const result = await this.dao.deleteMedico(medicoId)
+            return ok(result)
+
+        } catch (error) {
+            return serverError(error)
+        }
+    }    
 }
