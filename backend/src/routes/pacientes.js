@@ -1,5 +1,7 @@
 import express from 'express'
 import PacienteController from '../controllers/pacienteController.js'
+import authMiddleware from "../helpers/authMiddleware.js"
+import adminMiddleware from "../helpers/adminMiddleware.js"
 
 const pacientesRouter = express.Router()
 
