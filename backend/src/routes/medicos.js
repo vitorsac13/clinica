@@ -1,7 +1,7 @@
 import express from "express"
 import MedicoController from "../controllers/medicoController.js"
-import authMiddleware from "../middlewares/authMiddleware.js"
-import adminMiddleware from "../middlewares/adminMiddleware.js"
+import authMiddleware from "../helpers/authMiddleware.js"
+import adminMiddleware from "../helpers/adminMiddleware.js"
 
 const medicosRouter = express.Router()
 const medicoController = new MedicoController()
