@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import styles from "./page.module.css"
 
 export default function Paciente() {
+
+  const navigate = useNavigate()
 
   const [pacientes, setPacientes] = useState([
     { id: 1, nome: "João Silva", email: "joao@email.com", telefone: "11999999999" },
@@ -15,6 +18,8 @@ export default function Paciente() {
   )
 
   useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem("auth"))
+    
     if (!auth || auth.user.role !== "admin") {
       navigate("/profile")
     }
