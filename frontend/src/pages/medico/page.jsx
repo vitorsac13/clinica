@@ -23,7 +23,7 @@ export default function Medico() {
     <div className={styles.container}>
       <div className={styles.card}>
 
-        <h1>🩺 Gestão de Médicos</h1>
+        <h1>Gestão de Médicos</h1>
 
         <button className={styles.addBtn}>+ Novo Médico</button>
 

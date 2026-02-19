@@ -29,7 +29,7 @@ export default function Paciente() {
     <div className={styles.container}>
       <div className={styles.card}>
 
-        <h1>👥 Gestão de Pacientes</h1>
+        <h1>Gestão de Pacientes</h1>
 
         <div className={styles.topBar}>
           <input

@@ -3,7 +3,7 @@ import { LuUserRound, LuMenu, LuHouse  } from "react-icons/lu"
 import { Drawer } from '@mui/material'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from "../../vite.svg"
+import logo from "../../logo.png"
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
