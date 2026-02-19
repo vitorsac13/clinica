@@ -48,9 +48,9 @@ export default function Dashboard() {
             <h2 className={styles.logo}>CLÍNICA</h2>
 
             <nav>
-            <button><LuHouse size={18}/> Dashboard</button>
-            <button><LuCircleUser size={18}/> Pacientes</button>
-            <button><LuStethoscope size={18}/> Médicos</button>
+            <button onClick={() => navigate("/dashboard")}><LuHouse size={18}/> Dashboard</button>
+            <button onClick={() => navigate("/paciente")}><LuCircleUser size={18}/> Pacientes</button>
+            <button onClick={() => navigate("/medico")}><LuStethoscope size={18}/> Médicos</button>
             </nav>
 
             <button className={styles.logoutBtn}>
