@@ -1,6 +1,7 @@
 import { LuHouse, LuCalendar, LuCircleUser, LuStethoscope, LuLogOut } from "react-icons/lu"
 import styles from "./page.module.css"
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Dashboard() {
 
@@ -29,7 +30,11 @@ export default function Dashboard() {
     const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1))
     const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1))
 
+    const navigate = useNavigate()
+    
     useEffect(() => {
+      const auth = JSON.parse(localStorage.getItem("auth"))
+      
       if (!auth || auth.user.role !== "admin") {
         navigate("/profile")
       }
