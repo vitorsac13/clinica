@@ -1,6 +1,6 @@
 import { LuHouse, LuCalendar, LuCircleUser, LuStethoscope, LuLogOut } from "react-icons/lu"
 import styles from "./page.module.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Dashboard() {
 
