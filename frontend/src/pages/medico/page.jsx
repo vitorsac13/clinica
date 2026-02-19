@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import styles from "./medicos.module.css"
+import styles from "./page.module.css"
 
 export default function Medico() {
   
