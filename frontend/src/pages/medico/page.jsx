@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import styles from "./medicos.module.css"
 
 export default function Medico() {
+  
+  const navigate = useNavigate()
 
   const [medicos, setMedicos] = useState([
     { id: 1, nome: "Dr. João Cardoso", especialidade: "Cardiologia", crm: "12345-SP" },
@@ -9,6 +12,8 @@ export default function Medico() {
   ])
 
   useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem("auth"))
+
     if (!auth || auth.user.role !== "admin") {
       navigate("/profile")
     }
