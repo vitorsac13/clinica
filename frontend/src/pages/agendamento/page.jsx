@@ -57,8 +57,6 @@ export default function Agendamento() {
 
 		setEditingId(null)
 
-		// Recarrega lista
-		reloadAgendamentos()
 
 	} catch (error) {
 		console.error("Erro:", error)
