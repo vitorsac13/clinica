@@ -11,7 +11,7 @@ agendamentosRouter.get('/', async (req, res) => {
     res.status(statusCode).send({ success, statusCode, body })
 })
 
-agendamentosRouter.get('/my', authMiddleware, async (req, res) => {
+agendamentosRouter.get('/my', async (req, res) => {
     const { success, statusCode, body } =
         await agendamentoController.getMyAgendamentos(req.user)
 
