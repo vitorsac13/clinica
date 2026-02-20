@@ -1,111 +1,153 @@
 import { useState } from "react"
 import styles from "./page.module.css"
 
-export default function Appointment() {
-  const [form, setForm] = useState({
-    paciente: "",
-    especialidade: "",
-    medico: "",
-    data: "",
-    hora: "",
-  })
+export default function Agendamento() {
+	const [form, setForm] = useState({
+	paciente: "",
+	especialidade: "",
+	medico: "",
+	data: "",
+	hora: "",
+	})
 
-  const [agendamentos, setAppointment] = useState([])
+	const [editingId, setEditingId] = useState(null)
+	const API_URL = "http://localhost:3000/agendamentos"
+	const [agendamentos, setAgendamento] = useState([])
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+	function handleChange(e) {
+	setForm({ ...form, [e.target.name]: e.target.value })
+	}
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    if (!form.paciente) return alert("Informe o nome do paciente")
+	const handleSubmit = async (e) => {
+	e.preventDefault()
 
-    setAppointment([...agendamentos, { id: Date.now(), ...form }])
-    setForm({ paciente: "", especialidade: "", medico: "", data: "", hora: "" })
-  }
+	try {
+		const method = editingId ? "PUT" : "POST"
+		const url = editingId ? `${API_URL}/${editingId}` : API_URL
 
-  return (
-    <div className={styles.appointmentContainer}>
-      <div className={styles.appointmentCard}>
-        <h1 className={styles.appointmentName}>Agendamento de Consultas</h1>
+		const response = await fetch(url, {
+		method,
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${authData.token}`
+		},
+		body: JSON.stringify({
+			paciente: formData.paciente,
+			medico: formData.medico,
+			data: formData.data,
+			hora: formData.hora,
+			status: formData.status || "Pendente"
+		})
+		})
 
-        {/* FORMULÁRIO */}
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            name="paciente"
-            placeholder="Nome do paciente"
-            value={form.paciente}
-            onChange={handleChange}
-          />
+		const data = await response.json()
 
-          <input
-            name="especialidade"
-            placeholder="Especialidade"
-            value={form.especialidade}
-            onChange={handleChange}
-          />
+		if (!data.success) {
+		throw new Error("Erro ao salvar agendamento")
+		}
 
-          <input
-            name="medico"
-            placeholder="Médico"
-            value={form.medico}
-            onChange={handleChange}
-          />
+		// Reset formulário
+		setFormData({
+		paciente: "",
+		medico: "",
+		data: "",
+		hora: "",
+		status: "Pendente"
+		})
 
-          <input
-            type="date"
-            name="data"
-            value={form.data}
-            onChange={handleChange}
-          />
+		setEditingId(null)
 
-          <input
-            type="time"
-            name="hora"
-            value={form.hora}
-            onChange={handleChange}
-          />
+		// Recarrega lista
+		reloadAgendamentos()
 
-          <button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
-            Criar Agendamento
-          </button>
-        </form>
+	} catch (error) {
+		console.error("Erro:", error)
+		alert("Erro ao salvar agendamento")
+	}
+	}
 
-        {/* TABELA */}
-        <h2 className={styles.tableTitle}>Agendamentos Existentes</h2>
+	return (
+	<div className={styles.appointmentContainer}>
+		<div className={styles.appointmentCard}>
+		<h1 className={styles.appointmentName}>Agendamento de Consultas</h1>
 
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Paciente</th>
-              <th>Especialidade</th>
-              <th>Médico</th>
-              <th>Data</th>
-              <th>Hora</th>
-            </tr>
-          </thead>
-          <tbody>
-            {agendamentos.length === 0 && (
-              <tr>
-                <td colSpan="5" className={styles.empty}>
-                  Nenhum agendamento cadastrado
-                </td>
-              </tr>
-            )}
+		{/* FORMULÁRIO */}
+		<form className={styles.form} onSubmit={handleSubmit}>
+			<input
+			name="paciente"
+			placeholder="Nome do paciente"
+			value={form.paciente}
+			onChange={handleChange}
+			/>
 
-            {agendamentos.map((a) => (
-              <tr key={a.id}>
-                <td>{a.paciente}</td>
-                <td>{a.especialidade}</td>
-                <td>{a.medico}</td>
-                <td>{a.data}</td>
-                <td>{a.hora}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+			<input
+			name="especialidade"
+			placeholder="Especialidade"
+			value={form.especialidade}
+			onChange={handleChange}
+			/>
 
-      </div>
-    </div>
-  )
+			<input
+			name="medico"
+			placeholder="Médico"
+			value={form.medico}
+			onChange={handleChange}
+			/>
+
+			<input
+			type="date"
+			name="data"
+			value={form.data}
+			onChange={handleChange}
+			/>
+
+			<input
+			type="time"
+			name="hora"
+			value={form.hora}
+			onChange={handleChange}
+			/>
+
+			<button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
+			Criar Agendamento
+			</button>
+		</form>
+
+		{/* TABELA */}
+		<h2 className={styles.tableTitle}>Agendamentos Existentes</h2>
+
+		<table className={styles.table}>
+			<thead>
+			<tr>
+				<th>Paciente</th>
+				<th>Especialidade</th>
+				<th>Médico</th>
+				<th>Data</th>
+				<th>Hora</th>
+			</tr>
+			</thead>
+			<tbody>
+			{agendamentos.length === 0 && (
+				<tr>
+				<td colSpan="5" className={styles.empty}>
+					Nenhum agendamento cadastrado
+				</td>
+				</tr>
+			)}
+
+			{agendamentos.map((a) => (
+				<tr key={a.id}>
+				<td>{a.paciente}</td>
+				<td>{a.especialidade}</td>
+				<td>{a.medico}</td>
+				<td>{a.data}</td>
+				<td>{a.hora}</td>
+				</tr>
+			))}
+			</tbody>
+		</table>
+
+		</div>
+	</div>
+	)
 }
