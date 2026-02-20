@@ -32,6 +32,7 @@ export default function Agendamento() {
 		},
 		body: JSON.stringify({
 			paciente: form.paciente,
+			especialidade: form.especialidade,
 			medico: form.medico,
 			data: form.data,
 			hora: form.hora,
@@ -48,6 +49,7 @@ export default function Agendamento() {
 		// Reset formulário
 		setForm({
 		paciente: "",
+		especialidade: "",
 		medico: "",
 		data: "",
 		hora: "",
