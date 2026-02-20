@@ -11,7 +11,7 @@ export default function Agendamento() {
 	})
 
 	const [editingId, setEditingId] = useState(null)
-	const API_URL = "http://localhost:3000/agendamentos"
+	const API_URL = "http://localhost:3000/agendamento"
 	const [agendamentos, setAgendamento] = useState([])
 
 	function handleChange(e) {
@@ -28,15 +28,14 @@ export default function Agendamento() {
 		const response = await fetch(url, {
 		method,
 		headers: {
-			"Content-Type": "application/json",
-			Authorization: `Bearer ${authData.token}`
+			"Content-Type": "application/json"
 		},
 		body: JSON.stringify({
-			paciente: formData.paciente,
-			medico: formData.medico,
-			data: formData.data,
-			hora: formData.hora,
-			status: formData.status || "Pendente"
+			paciente: form.paciente,
+			medico: form.medico,
+			data: form.data,
+			hora: form.hora,
+			status: form.status || "Pendente"
 		})
 		})
 
@@ -47,7 +46,7 @@ export default function Agendamento() {
 		}
 
 		// Reset formulário
-		setFormData({
+		setForm({
 		paciente: "",
 		medico: "",
 		data: "",

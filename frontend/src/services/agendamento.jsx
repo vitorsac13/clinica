@@ -1,9 +1,9 @@
-const API_URL = 'http://localhost:3000/agendamentos'
+const API_URL = 'http://localhost:3000/agendamento'
 
 export async function createAgendamento(agendamentoData) {
     const auth = JSON.parse(localStorage.getItem('auth'))
 
-    const response = await fetch('http://localhost:3000/agendamentos', {
+    const response = await fetch('http://localhost:3000/agendamento', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export async function createAgendamento(agendamentoData) {
 export async function getAgendamentos() {
     const auth = JSON.parse(localStorage.getItem('auth'))
 
-    const response = await fetch('http://localhost:3000/agendamentos', {
+    const response = await fetch('http://localhost:3000/agendamento', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export async function getAgendamentos() {
 export async function getMyAgendamentos() {
     const auth = JSON.parse(localStorage.getItem('auth'))
 
-    const response = await fetch('http://localhost:3000/agendamentos/my', {
+    const response = await fetch('http://localhost:3000/agendamento/my', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
