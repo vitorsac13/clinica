@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/home/page.jsx'
 import Profile from './pages/profile/page.jsx'
 import Auth from './pages/auth/page.jsx'
-import Appointment from './pages/appointment/page.jsx'
+import Agendamento from './pages/agendamento/page.jsx'
 import Dashboard from "./pages/dashboard/page.jsx"
 import Medico from "./pages/medico/page.jsx"
 import Paciente from "./pages/paciente/page.jsx"
@@ -20,7 +20,7 @@ const pages = createBrowserRouter([
 			{ path: '/', element: <Home /> },
 			{ path: '/profile', element: <Profile /> },
       		{ path: '/auth', element: <Auth /> },
-			{ path: '/appointment', element: <Appointment /> },
+			{ path: '/agendamento', element: <Agendamento /> },
 			{ path: '/dashboard', element: <Dashboard />},
 			{ path: '/medico', element: <Medico />},
 			{ path: '/paciente', element: <Paciente />}
