@@ -5,11 +5,9 @@ import { useNavigate } from "react-router-dom"
 
 export default function Dashboard() {
 
-    const [consultas] = useState([
-        { id: 1, data: "2026-02-10", paciente: "João Silva", medico: "Dr. Carlos", hora: "14:00" },
-        { id: 2, data: "2026-02-15", paciente: "Ana Souza", medico: "Dra. Maria", hora: "09:30" },
-        { id: 3, data: "2026-02-20", paciente: "Pedro Lima", medico: "Dr. João", hora: "11:00" },
-    ])
+	const [loading, setLoading] = useState(true)
+    const [agendamentos, setAgendamentos] = useState([])
+	const API_URL = "http://localhost:3000/agendamentos"
 
     const [currentDate, setCurrentDate] = useState(new Date())
     const [selectedDate, setSelectedDate] = useState(null)
@@ -25,7 +23,9 @@ export default function Dashboard() {
     for (let i = 0; i < firstDay; i++) calendarDays.push(null)
     for (let d = 1; d <= daysInMonth; d++) calendarDays.push(d)
 
-    const consultasDoDia = consultas.filter(c => c.data === selectedDate)
+    const agendamentosDoDia = agendamentos.filter(c => {
+		return c.data?.split("T")[0] === selectedDate
+	})
 
     const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1))
     const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1))
@@ -38,6 +38,22 @@ export default function Dashboard() {
       if (!auth || auth.user.role !== "admin") {
         navigate("/profile")
       }
+    }, [])
+
+	useEffect(() => {
+        fetch(API_URL)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    setAgendamentos(data.body)
+                }
+            })
+            .catch(error => {
+                console.error("Error loading agendamentos:", error)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [])
 
     return (
@@ -131,7 +147,7 @@ export default function Dashboard() {
             if (!day) return <div key={i} className={styles.emptyDay}></div>
 
             const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
-            const hasConsulta = consultas.some(c => c.data === dateStr)
+            const hasConsulta = agendamentos.some(c => { return c.data?.split("T")[0] === dateStr })
 
             return (
               <div
@@ -150,10 +166,10 @@ export default function Dashboard() {
           <div className={styles.dayDetails}>
             <h3>Consultas em {new Date(selectedDate+"T00:00:00").toLocaleDateString("pt-BR")}</h3>
 
-            {consultasDoDia.length === 0 && <p>Nenhuma consulta</p>}
+            {agendamentosDoDia.length === 0 && <p>Nenhuma consulta</p>}
 
-            {consultasDoDia.map(c => (
-              <div key={c.id} className={styles.consultaCard}>
+            {agendamentosDoDia.map(c => (
+  				<div key={c._id} className={styles.consultaCard}>
                 <p><b>Paciente:</b> {c.paciente}</p>
                 <p><b>Médico:</b> {c.medico}</p>
                 <p><b>Hora:</b> {c.hora}</p>
