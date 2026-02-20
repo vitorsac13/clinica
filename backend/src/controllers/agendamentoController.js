@@ -17,6 +17,19 @@ export default class AgendamentoController {
         }
     }
 
+    async getMyAgendamentos(user) {
+            try {
+                const orders = await this.dao.getAgendamentosByUserId(
+                    new ObjectId(user.id)
+                )
+    
+                return ok(orders)
+            } catch (error) {
+                console.error('❌ ERRO AO BUSCAR MEUS AGENDAMENTOS', error)
+                return serverError(error)
+            }
+        }
+
     async deleteAgendamento(agendamentoId){
         try {
             const result = await this.dao.deleteAgendamento(agendamentoId)

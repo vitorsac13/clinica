@@ -11,6 +11,13 @@ agendamentosRouter.get('/', async (req, res) => {
     res.status(statusCode).send({ success, statusCode, body })
 })
 
+agendamentosRouter.get('/my', authMiddleware, async (req, res) => {
+    const { success, statusCode, body } =
+        await agendamentoController.getMyAgendamentos(req.user)
+
+    res.status(statusCode).send({ success, statusCode, body })
+})
+
 agendamentosRouter.delete('/:id', async (req, res) => {
     const { success, statusCode, body } = await agendamentoController.deleteAgendamento(req.params.id)
     res.status(statusCode).send({ success, statusCode, body })

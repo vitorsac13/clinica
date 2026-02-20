@@ -12,6 +12,14 @@ export default class AgendamentoDAO {
         return result
     }
 
+    async getAgendamentosByUserId(userId) {
+        return await Mongo.db
+            .collection(collectionName)
+            .find({ userId })
+            .sort({ createdAt: -1 })
+            .toArray()
+    }
+
     async deleteAgendamento(agendamentoId){
         const result = await Mongo.db.collection(collectionName).findOneAndDelete({ _id: new ObjectId(agendamentoId) })
         return result
