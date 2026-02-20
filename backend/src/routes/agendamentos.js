@@ -23,6 +23,13 @@ agendamentosRouter.delete('/:id', async (req, res) => {
     res.status(statusCode).send({ success, statusCode, body })
 })
 
+agendamentosRouter.post('/', async (req, res) => {
+    const { success, statusCode, body } =
+    await agendamentoController.addAgendamento(req.body, req.user)
+
+    res.status(statusCode).send({ success, statusCode, body })
+})
+
 agendamentosRouter.put('/:id', async (req, res) => {
     const { success, statusCode, body } = await agendamentoController.updateAgendamento(req.params.id, req.body)
     res.status(statusCode).send({ success, statusCode, body })

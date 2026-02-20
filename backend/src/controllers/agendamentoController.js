@@ -19,17 +19,39 @@ export default class AgendamentoController {
 
     async getMyAgendamentos(user) {
             try {
-                const orders = await this.dao.getAgendamentosByUserId(
+                const agendamentos = await this.dao.getAgendamentosByUserId(
                     new ObjectId(user.id)
                 )
     
-                return ok(orders)
+                return ok(agendamentos)
             } catch (error) {
                 console.error('❌ ERRO AO BUSCAR MEUS AGENDAMENTOS', error)
                 return serverError(error)
             }
         }
 
+    async addAgendamento(agendamentoData, user) {
+            try {
+                const agendamento = {
+                    paciente: agendamentoData.paciente,
+                    especialiadade: agendamentoData.especialidade,
+                    medico: agendamentoData.medico,
+                    data: agendamentoData.data,
+                    hora: agendamentoData.hora,
+    
+                    status: 'Pendente',
+                    createdAt: new Date()
+                }
+    
+                const result = await this.dao.addAgendamento(agendamento)
+                return ok(result)
+    
+            } catch (error) {
+                console.error('❌ ERRO AO CRIAR AGENDAMENTO:', error)
+                return serverError(error)
+            }
+        }
+    
     async deleteAgendamento(agendamentoId){
         try {
             const result = await this.dao.deleteAgendamento(agendamentoId)
