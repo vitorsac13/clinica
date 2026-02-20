@@ -93,30 +93,31 @@ export default function Profile() {
 			<p className={styles.profileEmail}>{authData?.user?.email}</p>
 
 			<div className={styles.profileAction}>
-			{authData?.user?.role === 'admin' && (
-				<>
-				<button
-					className={`${styles.btn} ${styles.adminBtn}`}
-					onClick={handleDashboard}
-				>
-					Dashboard
-				</button>
+				{authData?.user?.role === 'admin' && (
+					<>
+					<button
+						className={`${styles.btn} ${styles.adminBtn}`}
+						onClick={handleDashboard}
+					>
+						Dashboard
+					</button>
 
-				<button
-					className={`${styles.btn} ${styles.adminBtn}`}
-					onClick={handleEdit}
-				>
-					Admin
-				</button>
-				</>
-			)}
+					<button
+						className={`${styles.btn} ${styles.adminBtn}`}
+						onClick={handleEdit}
+					>
+						Admin
+					</button>
+					</>
+				)}
 
-			<button className={styles.btn} onClick={handleLogout}>
-				Logout
-			</button>
+				<button className={styles.btn} onClick={handleLogout}>
+					Logout
+				</button>
 			</div>
-
-			{/* AGENDA GOOGLE CALENDAR */}
+			
+			{authData?.user?.role === 'user' && (
+			<>
 			<h2 className={styles.calendarTitle}>Minhas Consultas</h2>
 
 			<div className={styles.calendarHeader}>
@@ -127,14 +128,14 @@ export default function Profile() {
 			<button className={styles.navBtn} onClick={nextMonth}>▶</button>
 			</div>
 
-			{/* DIAS DA SEMANA */}
+			
 			<div className={styles.weekDays}>
 			{["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"].map(d => (
 				<div key={d} className={styles.weekDay}>{d}</div>
 			))}
 			</div>
 
-			{/* GRID DO CALENDÁRIO */}
+			
 			<div className={styles.calendarGrid}>
 			{calendarDays.map((day, index) => {
 				if (!day) return <div key={index} className={styles.emptyDay}></div>
@@ -171,7 +172,8 @@ export default function Profile() {
 				))}
 			</div>
 			)}
-
+			</>
+			)}
 		</div>
 		</div>
 	)
