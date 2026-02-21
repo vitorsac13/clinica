@@ -35,11 +35,22 @@ export default class AgendamentoDAO {
         return result
     }
 
-    async updateProduct(agendamentoId, agendamentoData){
-        
-        const result = await Mongo.db.collection(collectionName).findOneAndUpdate( { _id: new ObjectId(agendamentoId) }, { $set: agendamentoData } )
-        return result 
-        
-    }
+    async updateAgendamento(agendamentoId, agendamentoData) {
+    const result = await Mongo.db.collection("agendamento").updateOne(
+        { _id: new ObjectId(agendamentoId) },
+        {
+            $set: {
+                paciente: agendamentoData.paciente,
+                especialidade: agendamentoData.especialidade,
+                medico: agendamentoData.medico,
+                data: agendamentoData.data,
+                hora: agendamentoData.hora,
+                status: agendamentoData.status
+            }
+        }
+    )
+
+    return result
+}
 
 }

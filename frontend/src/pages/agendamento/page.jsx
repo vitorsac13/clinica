@@ -11,6 +11,7 @@ export default function Agendamento() {
 	medico: "",
 	data: "",
 	hora: "",
+	status: "Pendente"
 	})
 
 	const navigate = useNavigate()
@@ -177,6 +178,7 @@ export default function Agendamento() {
 				<th>Data</th>
 				<th>Hora</th>
 				<th>Status</th>
+				<th>Ações</th>
 			</tr>
 			</thead>
 			<tbody>
