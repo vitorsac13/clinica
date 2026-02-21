@@ -73,6 +73,21 @@
   background: #15803d;
 }
 
+.editBtn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #16a34a;
+  color: white;
+  transition: 0.2s;
+}
+
+.editBtn:hover {
+  background: #15803d;
+}
+
 /* TABELA */
 .tableTitle {
   margin-top: 20px;
