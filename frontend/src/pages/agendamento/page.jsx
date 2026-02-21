@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import styles from "./page.module.css"
 
 export default function Agendamento() {
+
 	const [form, setForm] = useState({
 	paciente: "",
 	especialidade: "",
@@ -10,9 +12,11 @@ export default function Agendamento() {
 	hora: "",
 	})
 
+	const navigate = useNavigate()
 	const [editingId, setEditingId] = useState(null)
 	const API_URL = "http://localhost:3000/agendamento"
 	const [agendamentos, setAgendamentos] = useState([])
+	const authData = JSON.parse(localStorage.getItem("auth"))
 
 	// Proteção da rota, manda o usuario para a homepage se a role não for admin
     useEffect(() => {
