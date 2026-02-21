@@ -195,7 +195,7 @@ export default function Agendamento() {
 					<td>{a.paciente}</td>
 					<td>{a.especialidade}</td>
 					<td>{a.medico}</td>
-					<td>{a.data}</td>
+					<td>{a.data.split("-").reverse().join("/")}</td>
 					<td>{a.hora}</td>
 					<td>{a.status}</td>
 					<td><button 
