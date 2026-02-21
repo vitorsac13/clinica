@@ -154,6 +154,12 @@ export default function Agendamento() {
 			onChange={handleChange}
 			/>
 
+			<input
+			name="status"
+			placeholder="Status"
+			value={form.status}
+			onChange={handleChange}
+			/>
 			<button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
 			{editingId ? "Atualizar Agendamento" : "Criar Agendamento"}
 			</button>
