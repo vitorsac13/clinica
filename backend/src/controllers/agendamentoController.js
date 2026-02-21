@@ -30,7 +30,7 @@ export default class AgendamentoController {
             }
         }
 
-    async addAgendamento(agendamentoData, user) {
+    async addAgendamento(agendamentoData) {
             try {
                 const agendamento = {
                     paciente: agendamentoData.paciente,
