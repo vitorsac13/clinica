@@ -97,7 +97,7 @@ export default function Agendamento() {
 
 	const handleEdit = (agendamento) => {
         setEditingId(agendamento._id)
-        setFormData({
+        setForm({
             paciente: agendamento.paciente,
             especialidade: agendamento.especialidade,
             medico: agendamento.medico,
@@ -150,7 +150,7 @@ export default function Agendamento() {
 			/>
 
 			<button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
-			Criar Agendamento
+			{editingId ? "Atualizar Agendamento" : "Criar Agendamento"}
 			</button>
 		</form>
 
