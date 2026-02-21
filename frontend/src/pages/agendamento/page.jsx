@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { LuPencil } from "react-icons/lu"
 import styles from "./page.module.css"
 
 export default function Agendamento() {
@@ -94,6 +95,18 @@ export default function Agendamento() {
 	}
 	}
 
+	const handleEdit = (agendamento) => {
+        setEditingId(agendamento._id)
+        setFormData({
+            paciente: agendamento.paciente,
+            especialidade: agendamento.especialidade,
+            medico: agendamento.medico,
+            data: agendamento.data?.split("T")[0],
+            hora: agendamento.hora,
+            status: agendamento.status
+        })
+    }
+
 	return (
 	<div className={styles.appointmentContainer}>
 		<div className={styles.appointmentCard}>
@@ -165,13 +178,19 @@ export default function Agendamento() {
 			)}
 
 			{agendamentos.map((a) => (
-				<tr key={a.id}>
+				<tr key={a._id}>
 					<td>{a.paciente}</td>
 					<td>{a.especialidade}</td>
 					<td>{a.medico}</td>
 					<td>{a.data}</td>
 					<td>{a.hora}</td>
 					<td>{a.status}</td>
+					<td><button 
+					onClick={() => handleEdit(a)}
+					className={styles.editBtn}
+					>
+					<LuPencil size={16} /> Editar
+					</button></td>
 				</tr>
 			))}
 			</tbody>
