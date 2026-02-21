@@ -25,7 +25,7 @@ agendamentosRouter.delete('/:id', async (req, res) => {
 
 agendamentosRouter.post('/', async (req, res) => {
     const { success, statusCode, body } =
-    await agendamentoController.addAgendamento(req.body, req.user)
+    await agendamentoController.addAgendamento(req.body)
 
     res.status(statusCode).send({ success, statusCode, body })
 })
