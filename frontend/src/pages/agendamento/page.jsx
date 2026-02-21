@@ -152,6 +152,7 @@ export default function Agendamento() {
 				<th>Médico</th>
 				<th>Data</th>
 				<th>Hora</th>
+				<th>Status</th>
 			</tr>
 			</thead>
 			<tbody>
