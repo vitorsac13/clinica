@@ -34,7 +34,7 @@ export default class AgendamentoController {
             try {
                 const agendamento = {
                     paciente: agendamentoData.paciente,
-                    especialiadade: agendamentoData.especialidade,
+                    especialidade: agendamentoData.especialidade,
                     medico: agendamentoData.medico,
                     data: agendamentoData.data,
                     hora: agendamentoData.hora,
