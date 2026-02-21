@@ -12,7 +12,32 @@ export default function Agendamento() {
 
 	const [editingId, setEditingId] = useState(null)
 	const API_URL = "http://localhost:3000/agendamento"
-	const [agendamentos, setAgendamento] = useState([])
+	const [agendamentos, setAgendamentos] = useState([])
+
+	// Proteção da rota, manda o usuario para a homepage se a role não for admin
+    useEffect(() => {
+        if (!authData || authData.user.role !== "admin") {
+            navigate("/")
+        }
+    }, [authData, navigate])
+
+    // Buscar agendamentos
+    useEffect(() => {
+        fetch(API_URL)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setAgendamentos(data.body)
+                }
+            })
+            .finally(() => setLoading(false))
+    }, [])
+
+	const reloadAgendamentos = async () => {
+        const res = await fetch(API_URL)
+        const data = await res.json()
+        setAgendamentos(data.body)
+    }
 
 	function handleChange(e) {
 	setForm({ ...form, [e.target.name]: e.target.value })
@@ -57,7 +82,7 @@ export default function Agendamento() {
 		})
 
 		setEditingId(null)
-
+		reloadAgendamentos()
 
 	} catch (error) {
 		console.error("Erro:", error)
@@ -136,11 +161,12 @@ export default function Agendamento() {
 
 			{agendamentos.map((a) => (
 				<tr key={a.id}>
-				<td>{a.paciente}</td>
-				<td>{a.especialidade}</td>
-				<td>{a.medico}</td>
-				<td>{a.data}</td>
-				<td>{a.hora}</td>
+					<td>{a.paciente}</td>
+					<td>{a.especialidade}</td>
+					<td>{a.medico}</td>
+					<td>{a.data}</td>
+					<td>{a.hora}</td>
+					<td>{a.status}</td>
 				</tr>
 			))}
 			</tbody>
