@@ -16,6 +16,7 @@ export default function Agendamento() {
 	const navigate = useNavigate()
 	const [editingId, setEditingId] = useState(null)
 	const API_URL = "http://localhost:3000/agendamento"
+	const [loading, setLoading] = useState(true)
 	const [agendamentos, setAgendamentos] = useState([])
 	const authData = JSON.parse(localStorage.getItem("auth"))
 
@@ -106,6 +107,10 @@ export default function Agendamento() {
             status: agendamento.status
         })
     }
+
+	if (loading) {
+		return <h2 className={styles.loading}>Carregando agendamentos...</h2>
+	}
 
 	return (
 	<div className={styles.appointmentContainer}>
