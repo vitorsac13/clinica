@@ -38,8 +38,7 @@ export default class AgendamentoController {
                     medico: agendamentoData.medico,
                     data: agendamentoData.data,
                     hora: agendamentoData.hora,
-    
-                    status: 'Pendente',
+                    status: agendamentoData.status,
                     createdAt: new Date()
                 }
     
