@@ -14,28 +14,15 @@ export default class MedicoDAO {
     return result
   }
 
-  async createMedico(medicoData) {
+  async createMedico(medicoData){
+              
+      medicoData.createdAt = new Date()
 
-    // Gera ID público (opcional)
-    const medico = {
-      _id: new ObjectId(),
-      nome: medicoData.nome,
-      especialidade: medicoData.especialidade,
-      crm: medicoData.crm,
-      email: medicoData.email || null,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
+      const result = await Mongo.db
+          .collection(collectionName)
+          .insertOne(medicoData)
 
-    const result = await Mongo.db
-      .collection(collectionName)
-      .insertOne(medico)
-
-    return {
-      acknowledged: result.acknowledged,
-      insertedId: result.insertedId,
-      medico
-    }
+      return result
   }
 
   async updateMedico(medicoId, medicoData) {
