@@ -119,7 +119,7 @@ export default function Agendamento() {
             }
         })
 
-        reloadProducts()
+        reloadAgendamentos()
     }
 
 	if (loading) {
