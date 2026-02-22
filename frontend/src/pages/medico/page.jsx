@@ -8,6 +8,7 @@ export default function Medico() {
 		nome: "",
 		especialidade: "",
 		crm: "",
+		email: "",
 	})
 	const navigate = useNavigate()
 	const [editingId, setEditingId] = useState(null)
@@ -61,13 +62,14 @@ export default function Medico() {
 				nome: form.nome,
 				especialidade: form.especialidade,
 				crm: form.crm,
+				email: form.email
 			})
 			})
 
 			const data = await response.json()
 
 			if (!data.success) {
-			throw new Error("Erro ao salvar agendamento")
+			throw new Error("Erro ao salvar médico")
 			}
 
 			// Reset formulário
@@ -75,6 +77,7 @@ export default function Medico() {
 			nome: "",
 			especialidade: "",
 			crm: "",
+			email: ""
 			})
 
 			setEditingId(null)
@@ -86,17 +89,18 @@ export default function Medico() {
 		}
 	}
 
-	const handleEdit = (agendamento) => {
-		setEditingId(agendamento._id)
+	const handleEdit = (medico) => {
+		setEditingId(medico._id)
 		setForm({
-			nome: agendamento.nome,
-			especialidade: agendamento.especialidade,
-			crm: agendamento.crm,
+			nome: medico.nome,
+			especialidade: medico.especialidade,
+			crm: medico.crm,
+			email: medico.email
 		})
 	}
 
 	const handleDelete = async (id) => {
-		if (!window.confirm("Deseja excluir este agendamento?")) return
+		if (!window.confirm("Deseja excluir este médico?")) return
 
 		await fetch(`${API_URL}/${id}`, {
 			method: "DELETE",
@@ -141,6 +145,13 @@ export default function Medico() {
 			onChange={handleChange}
 			/>
 
+			<input
+			name="email"
+			placeholder="Email"
+			value={form.email}
+			onChange={handleChange}
+			/>
+
 			<button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
 			{editingId ? "Atualizar Médico" : "Adicionar Médico"}
 			</button>
@@ -158,13 +169,13 @@ export default function Medico() {
 
 			<tbody>
 			{medicos.map(m => (
-				<tr key={m.id}>
+				<tr key={m._id}>
 				<td>{m.nome}</td>
 				<td>{m.especialidade}</td>
 				<td>{m.crm}</td>
 				<td>
-					<button className={styles.editBtn}>Editar</button>
-					<button className={styles.deleteBtn}>Excluir</button>
+					<button onClick={() => handleEdit(m)} className={styles.editBtn}>Editar</button>
+					<button onClick={() => handleDelete(m._id)} className={styles.deleteBtn}>Excluir</button>
 				</td>
 				</tr>
 			))}
