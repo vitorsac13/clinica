@@ -152,7 +152,7 @@ export default function Medico() {
 			onChange={handleChange}
 			/>
 
-			<button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
+			<button className={`${styles.btn} ${styles.addBtn}`} type="submit">
 			{editingId ? "Atualizar Médico" : "Adicionar Médico"}
 			</button>
 		</form>

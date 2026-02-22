@@ -30,6 +30,31 @@ h1 {
   margin-bottom: 15px;
 }
 
+/* FORM */
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  background-color: white;
+  color: black;
+  width: 95%;
+}
+
+.form input::placeholder {
+  color: #6b7280;
+}
+
+.form button {
+  grid-column: span 2;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
