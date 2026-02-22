@@ -211,8 +211,10 @@ export default function Agendamento() {
 					<td>{a.data.split("-").reverse().join("/")}</td>
 					<td>{a.hora}</td>
 					<td>{a.status}</td>
-					<td><button onClick={() => handleEdit(a)} className={styles.editBtn}><LuPencil size={16} /> Editar </button></td>
-					<td><button onClick={() => handleDelete(a)} className={styles.deleteBtn}><LuTrash2 size={16} /> Excluir </button></td>
+					<td>
+						<button onClick={() => handleEdit(a)} className={styles.editBtn}><LuPencil size={16} /> Editar </button>
+						<button onClick={() => handleDelete(a)} className={styles.deleteBtn}><LuTrash2 size={16} /> Excluir </button>
+					</td>
 				</tr>
 			))}
 			</tbody>

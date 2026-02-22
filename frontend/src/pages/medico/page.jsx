@@ -163,6 +163,7 @@ export default function Medico() {
 				<th>Nome</th>
 				<th>Especialidade</th>
 				<th>CRM</th>
+				<th>Email</th>
 				<th>Ações</th>
 			</tr>
 			</thead>
@@ -173,6 +174,7 @@ export default function Medico() {
 				<td>{m.nome}</td>
 				<td>{m.especialidade}</td>
 				<td>{m.crm}</td>
+				<td>{m.email}</td>
 				<td>
 					<button onClick={() => handleEdit(m)} className={styles.editBtn}>Editar</button>
 					<button onClick={() => handleDelete(m._id)} className={styles.deleteBtn}>Excluir</button>
