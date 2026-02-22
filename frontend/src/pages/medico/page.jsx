@@ -15,6 +15,7 @@ export default function Medico() {
 	const API_URL = "http://localhost:3000/medico"
 	const [loading, setLoading] = useState(true)
 	const [medicos, setMedicos] = useState([])
+	const [search, setSearch] = useState("")
 	const authData = JSON.parse(localStorage.getItem("auth"))
 
 	// Proteção da rota, manda o usuario para a homepage se a role não for admin
@@ -112,6 +113,10 @@ export default function Medico() {
 		reloadMedicos()
 	}
 
+	const filtered = medicos.filter(m =>
+		m.nome.toLowerCase().includes(search.toLowerCase())
+	)
+
 	if (loading) {
 		return <h2 className={styles.loading}>Carregando médicos...</h2>
 	}
@@ -157,6 +162,14 @@ export default function Medico() {
 			</button>
 		</form>
 
+		<div className={styles.topBar}>
+			<input
+			placeholder="Buscar médico..."
+			value={search}
+			onChange={e => setSearch(e.target.value)}
+			/> 
+		</div>
+
 		<table className={styles.table}>
 			<thead>
 			<tr>
@@ -169,7 +182,7 @@ export default function Medico() {
 			</thead>
 
 			<tbody>
-			{medicos.map(m => (
+			{filtered.map(m => (
 				<tr key={m._id}>
 				<td>{m.nome}</td>
 				<td>{m.especialidade}</td>

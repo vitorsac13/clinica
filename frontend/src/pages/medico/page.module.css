@@ -55,6 +55,13 @@ h1 {
   grid-column: span 2;
 }
 
+.topBar {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+
 .table {
   width: 100%;
   border-collapse: collapse;
