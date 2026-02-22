@@ -88,6 +88,21 @@
   background: #15803d;
 }
 
+.deleteBtn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #f50101;
+  color: white;
+  transition: 0.2s;
+}
+
+.deleteBtn:hover {
+  background: #ac0000;
+}
+
 /* TABELA */
 .tableTitle {
   margin-top: 20px;

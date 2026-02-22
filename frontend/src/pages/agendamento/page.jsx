@@ -212,7 +212,7 @@ export default function Agendamento() {
 					<td>{a.hora}</td>
 					<td>{a.status}</td>
 					<td><button onClick={() => handleEdit(a)} className={styles.editBtn}><LuPencil size={16} /> Editar </button></td>
-					<td><button onClick={() => handleDelete(a)} className={styles.editBtn}><LuTrash2 size={16} /> Excluir </button></td>
+					<td><button onClick={() => handleDelete(a)} className={styles.deleteBtn}><LuTrash2 size={16} /> Excluir </button></td>
 				</tr>
 			))}
 			</tbody>
