@@ -17,7 +17,9 @@ export default function Navbar() {
                 </div>
 
                 <div className={styles.navbarRight}>
-                    <Link to="/agendamento" className={styles.navbarIcon}>Agendamento</Link>
+                    {authData?.user?.role === 'admin' && (
+                        <Link to="/agendamento" className={styles.navbarIcon}>Agendamento</Link>
+                    )}
                     <Link to="/"><LuHouse className={styles.navbarIcon} /></Link>
                     <Link to="/profile"><LuUserRound className={styles.navbarIcon} /></Link>
                 </div>
