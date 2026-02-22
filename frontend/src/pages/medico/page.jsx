@@ -142,7 +142,7 @@ export default function Medico() {
 			/>
 
 			<button className={`${styles.btn} ${styles.adminBtn}`} type="submit">
-			{editingId ? "Atualizar Agendamento" : "Criar Agendamento"}
+			{editingId ? "Atualizar Médico" : "Adicionar Médico"}
 			</button>
 		</form>
 
