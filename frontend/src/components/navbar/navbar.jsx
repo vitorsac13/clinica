@@ -7,6 +7,7 @@ import logo from "../../logo.png"
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
+    const authData = JSON.parse(localStorage.getItem("auth"))
 
     return (
         <nav className={styles.navbarContainer}>
