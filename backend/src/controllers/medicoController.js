@@ -17,11 +17,21 @@ export default class MedicoController {
         }
     }
 
-    async createMedico(medicoData){
-        try{
-        const result = await dao.createMedico(medicoData)
-        return ok(result)
+    async createMedico(medicoData) {
+        try {
+            const medico = {
+                nome: medicoData.nome,
+                especialidade: medicoData.especialidade,
+                crm: medicoData.crm,
+                email: medicoData.email,
+                createdAt: new Date()
+            }
+
+            const result = await this.dao.createMedico(medico)
+            return ok(result)
+
         } catch (error) {
+            console.error('❌ ERRO AO CRIAR MÉDICO:', error)
             return serverError(error)
         }
     }
