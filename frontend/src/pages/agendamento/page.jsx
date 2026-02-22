@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { LuPencil } from "react-icons/lu"
+import { LuPencil, LuTrash2  } from "react-icons/lu"
 import styles from "./page.module.css"
 
 export default function Agendamento() {
@@ -109,6 +109,19 @@ export default function Agendamento() {
         })
     }
 
+	const handleDelete = async (id) => {
+        if (!window.confirm("Deseja excluir este agendamento?")) return
+
+        await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${authData.token}`
+            }
+        })
+
+        reloadProducts()
+    }
+
 	if (loading) {
 		return <h2 className={styles.loading}>Carregando agendamentos...</h2>
 	}
@@ -198,12 +211,8 @@ export default function Agendamento() {
 					<td>{a.data.split("-").reverse().join("/")}</td>
 					<td>{a.hora}</td>
 					<td>{a.status}</td>
-					<td><button 
-					onClick={() => handleEdit(a)}
-					className={styles.editBtn}
-					>
-					<LuPencil size={16} /> Editar
-					</button></td>
+					<td><button onClick={() => handleEdit(a)} className={styles.editBtn}><LuPencil size={16} /> Editar </button></td>
+					<td><button onClick={() => handleDelete(a)} className={styles.editBtn}><LuTrash2 size={16} /> Excluir </button></td>
 				</tr>
 			))}
 			</tbody>
