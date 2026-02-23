@@ -14,28 +14,15 @@ export default class PacienteDAO {
     return result
   }
 
-  async createPaciente(pacienteData) {
+  async createPaciente(pacienteData){
+                
+      pacienteData.createdAt = new Date()
 
-    // Gera ID público (opcional)
-    const paciente = {
-      _id: new ObjectId(),
-      nome: pacienteData.nome,
-      cpf: pacienteData.cpf,
-      dtNascimento: pacienteData.dtNascimento,
-      email: pacienteData.email || null,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
+      const result = await Mongo.db
+          .collection(collectionName)
+          .insertOne(pacienteData)
 
-    const result = await Mongo.db
-      .collection(collectionName)
-      .insertOne(paciente)
-
-    return {
-      acknowledged: result.acknowledged,
-      insertedId: result.insertedId,
-      paciente
-    }
+      return result
   }
 
   async updatePaciente(pacienteId, pacienteData) {
