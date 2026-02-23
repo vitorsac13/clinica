@@ -14,22 +14,22 @@ pacientesRouter.get("/", authMiddleware, async (req, res) => {
 })
 
 
-// CRIAR PACIENTE (ADMIN ONLY)
-pacientesRouter.post("/", authMiddleware, adminMiddleware, async (req, res) => {
+// CRIAR PACIENTE
+pacientesRouter.post("/", async (req, res) => {
     const { success, statusCode, body } = await pacienteController.createPaciente(req.body)
     res.status(statusCode).json({ success, statusCode, body })
 })
 
 
-// ATUALIZAR PACIENTE (ADMIN ONLY)
-pacientesRouter.put("/:id", authMiddleware, adminMiddleware, async (req, res) => {
+// ATUALIZAR PACIENTE 
+pacientesRouter.put("/:id", async (req, res) => {
     const { success, statusCode, body } = await pacienteController.updatePaciente(req.params.id, req.body)
     res.status(statusCode).json({ success, statusCode, body })
 })
 
 
-// DELETAR PACIENTE (ADMIN ONLY)
-pacientesRouter.delete("/:id", authMiddleware, adminMiddleware, async (req, res) => {
+// DELETAR PACIENTE
+pacientesRouter.delete("/:id", async (req, res) => {
     const { success, statusCode, body } = await pacienteController.deletePaciente(req.params.id)
     res.status(statusCode).json({ success, statusCode, body })
 })
