@@ -70,7 +70,7 @@ export default function Paciente() {
         const data = await response.json()
   
         if (!data.success) {
-        throw new Error("Erro ao salvar médico")
+        throw new Error("Erro ao salvar paciente")
         }
   
         // Reset formulário
@@ -86,7 +86,7 @@ export default function Paciente() {
   
       } catch (error) {
         console.error("Erro:", error)
-        alert("Erro ao salvar médico")
+        alert("Erro ao salvar paciente")
       }
     }
   
@@ -113,12 +113,12 @@ export default function Paciente() {
       reloadPacientes()
     }
   
-    const filtered = medicos.filter(m =>
-      m.nome.toLowerCase().includes(search.toLowerCase())
+    const filtered = pacientes.filter(p =>
+      p.nome.toLowerCase().includes(search.toLowerCase())
     )
   
     if (loading) {
-      return <h2 className={styles.loading}>Carregando médicos...</h2>
+      return <h2 className={styles.loading}>Carregando pacientes...</h2>
     }
 
   return (
