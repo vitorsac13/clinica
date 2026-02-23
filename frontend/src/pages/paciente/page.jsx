@@ -4,26 +4,122 @@ import styles from "./page.module.css"
 
 export default function Paciente() {
 
-  const navigate = useNavigate()
-
-  const [pacientes, setPacientes] = useState([
-    { id: 1, nome: "João Silva", email: "joao@email.com", telefone: "11999999999" },
-    { id: 2, nome: "Ana Souza", email: "ana@email.com", telefone: "11988888888" }
-  ])
-
-  const [search, setSearch] = useState("")
-
-  const filtered = pacientes.filter(p =>
-    p.nome.toLowerCase().includes(search.toLowerCase())
-  )
-
-  useEffect(() => {
-    const auth = JSON.parse(localStorage.getItem("auth"))
-    
-    if (!auth || auth.user.role !== "admin") {
-      navigate("/profile")
+  const [form, setForm] = useState({
+      nome: "",
+      cpf: "",
+      nascimento: "",
+      email: "",
+    })
+    const navigate = useNavigate()
+    const [editingId, setEditingId] = useState(null)
+    const API_URL = "http://localhost:3000/paciente"
+    const [loading, setLoading] = useState(true)
+    const [pacientes, setPacientes] = useState([])
+    const [search, setSearch] = useState("")
+    const authData = JSON.parse(localStorage.getItem("auth"))
+  
+    // Proteção da rota, manda o usuario para a homepage se a role não for admin
+      useEffect(() => {
+          if (!authData || authData.user.role !== "admin") {
+              navigate("/")
+          }
+      }, [authData, navigate])
+  
+    // Buscar pacientes
+      useEffect(() => {
+          fetch(API_URL)
+              .then(res => res.json())
+              .then(data => {
+                  if (data.success) {
+                      setPacientes(data.body)
+                  }
+              })
+              .finally(() => setLoading(false))
+      }, [])
+  
+    const reloadPacientes = async () => {
+          const res = await fetch(API_URL)
+          const data = await res.json()
+          setPacientes(data.body)
+      }
+  
+    function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
     }
-  }, [])
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+  
+      try {
+        const method = editingId ? "PUT" : "POST"
+        const url = editingId ? `${API_URL}/${editingId}` : API_URL
+  
+        const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nome: form.nome,
+          cpf: form.cpf,
+          nascimento: form.nascimento,
+          email: form.email
+        })
+        })
+  
+        const data = await response.json()
+  
+        if (!data.success) {
+        throw new Error("Erro ao salvar médico")
+        }
+  
+        // Reset formulário
+        setForm({
+        nome: "",
+        cpf: "",
+        nascimento: "",
+        email: ""
+        })
+  
+        setEditingId(null)
+        reloadPacientes()
+  
+      } catch (error) {
+        console.error("Erro:", error)
+        alert("Erro ao salvar médico")
+      }
+    }
+  
+    const handleEdit = (paciente) => {
+      setEditingId(paciente._id)
+      setForm({
+        nome: paciente.nome,
+        cpf: paciente.cpf,
+        nascimento: paciente.nascimento,
+        email: paciente.email
+      })
+    }
+  
+    const handleDelete = async (id) => {
+      if (!window.confirm("Deseja excluir este paciente?")) return
+  
+      await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${authData.token}`
+        }
+      })
+  
+      reloadPacientes()
+    }
+  
+    const filtered = medicos.filter(m =>
+      m.nome.toLowerCase().includes(search.toLowerCase())
+    )
+  
+    if (loading) {
+      return <h2 className={styles.loading}>Carregando médicos...</h2>
+    }
 
   return (
     <div className={styles.container}>
