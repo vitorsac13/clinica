@@ -17,11 +17,21 @@ export default class PacienteController {
         }
     }
 
-    async createPaciente(pacienteData){
-        try{
-        const result = await dao.createPaciente(pacienteData)
-        return ok(result)
+    async createPaciente(pacienteData) {
+        try {
+            const paciente = {
+                nome: pacienteData.nome,
+                cpf: pacienteData.cpf,
+                nascimento: pacienteData.nascimento,
+                email: pacienteData.email,
+                createdAt: new Date()
+            }
+
+            const result = await this.dao.createPaciente(paciente)
+            return ok(result)
+
         } catch (error) {
+            console.error('❌ ERRO AO CRIAR PACIENTE:', error)
             return serverError(error)
         }
     }
