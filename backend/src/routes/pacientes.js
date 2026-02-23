@@ -8,7 +8,7 @@ const pacientesRouter = express.Router()
 const pacienteController = new PacienteController()
 
 // LISTAR PACIENTES
-pacientesRouter.get("/", authMiddleware, async (req, res) => {
+pacientesRouter.get("/", async (req, res) => {
     const { success, statusCode, body } = await pacienteController.getPacientes()
     res.status(statusCode).json({ success, statusCode, body })
 })
