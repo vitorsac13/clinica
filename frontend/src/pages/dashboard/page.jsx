@@ -80,7 +80,7 @@ export default function Dashboard() {
         {/* MAIN */}
         <main className={styles.dashboardMain}>
             <h1 className={styles.pageTitle}>Painel Administrativo</h1>
-            <p className={styles.pageSubtitle}>Sistema de gestão hospitalar</p>
+            <p className={styles.pageSubtitle}>Sistema de Gestão de Clínica</p>
 
             {/* MÉTRICAS */}
             <div className={styles.statsGrid}>
