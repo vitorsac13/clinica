@@ -13,21 +13,21 @@ medicosRouter.get("/", async (req, res) => {
 })
 
 
-// CRIAR MÉDICO (ADMIN ONLY)
+// CRIAR MÉDICO
 medicosRouter.post("/", async (req, res) => {
     const { success, statusCode, body } = await medicoController.createMedico(req.body)
     res.status(statusCode).json({ success, statusCode, body })
 })
 
 
-// ATUALIZAR MÉDICO (ADMIN ONLY)
+// ATUALIZAR MÉDICO
 medicosRouter.put("/:id", async (req, res) => {
     const { success, statusCode, body } = await medicoController.updateMedico(req.params.id, req.body)
     res.status(statusCode).json({ success, statusCode, body })
 })
 
 
-// DELETAR MÉDICO (ADMIN ONLY)
+// DELETAR MÉDICO
 medicosRouter.delete("/:id", async (req, res) => {
     const { success, statusCode, body } = await medicoController.deleteMedico(req.params.id)
     res.status(statusCode).json({ success, statusCode, body })
