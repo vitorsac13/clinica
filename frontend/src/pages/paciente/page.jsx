@@ -31,40 +31,75 @@ export default function Paciente() {
 
         <h1>Gestão de Pacientes</h1>
 
-        <div className={styles.topBar}>
-          <input
-            placeholder="Buscar paciente..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-
-          <button className={styles.addBtn}>+ Novo Paciente</button>
-        </div>
-
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Telefone</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {filtered.map(p => (
-              <tr key={p.id}>
-                <td>{p.nome}</td>
-                <td>{p.email}</td>
-                <td>{p.telefone}</td>
-                <td>
-                  <button className={styles.editBtn}>Editar</button>
-                  <button className={styles.deleteBtn}>Excluir</button>
-                </td>
+        {/* FORMULÁRIO */}
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <input
+              name="nome"
+              placeholder="Nome do paciente"
+              value={form.nome}
+              onChange={handleChange}
+              />
+        
+              <input
+              name="cpf"
+              placeholder="CPF do paciente"
+              value={form.especialidade}
+              onChange={handleChange}
+              />
+        
+              <input
+              name="nascimento"
+              placeholder="Data de nascimento"
+              value={form.crm}
+              onChange={handleChange}
+              />
+        
+              <input
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              />
+        
+              <button className={`${styles.btn} ${styles.addBtn}`} type="submit">
+              {editingId ? "Atualizar Paciente" : "Adicionar Paciente"}
+              </button>
+            </form>
+        
+            <div className={styles.topBar}>
+              <input
+              placeholder="Buscar paciente..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              /> 
+            </div>
+        
+            <table className={styles.table}>
+              <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Nascimento</th>
+                <th>Email</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+              </thead>
+        
+              <tbody>
+              {filtered.map(p => (
+                <tr key={p._id}>
+                <td>{p.nome}</td>
+                <td>{p.cpf}</td>
+                <td>{p.nascimento}</td>
+                <td>{p.email}</td>
+                <td>
+                  <button onClick={() => handleEdit(m)} className={styles.editBtn}>Editar</button>
+                  <button onClick={() => handleDelete(m._id)} className={styles.deleteBtn}>Excluir</button>
+                </td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
 
       </div>
     </div>
