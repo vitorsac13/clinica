@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom"
 
 export default function Dashboard() {
 
-	const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const [agendamentos, setAgendamentos] = useState([])
-	const API_URL = "http://localhost:3000/agendamentos"
+    const API_URL = "http://localhost:3000/agendamento"
 
     const [currentDate, setCurrentDate] = useState(new Date())
     const [selectedDate, setSelectedDate] = useState(null)
@@ -23,9 +23,9 @@ export default function Dashboard() {
     for (let i = 0; i < firstDay; i++) calendarDays.push(null)
     for (let d = 1; d <= daysInMonth; d++) calendarDays.push(d)
 
-    const agendamentosDoDia = agendamentos.filter(c => {
-		return c.data?.split("T")[0] === selectedDate
-	})
+    const agendamentosDoDia = agendamentos.filter(c =>
+		c.data && new Date(c.data).toISOString().split("T")[0] === selectedDate
+	)
 
     const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1))
     const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1))
@@ -41,20 +41,23 @@ export default function Dashboard() {
     }, [])
 
 	useEffect(() => {
-        fetch(API_URL)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    setAgendamentos(data.body)
-                }
-            })
-            .catch(error => {
-                console.error("Error loading agendamentos:", error)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }, [])
+		async function loadAgendamentos() {
+			try {
+				const response = await fetch(API_URL)
+				const data = await response.json()
+
+				console.log("API:", data)
+
+				setAgendamentos(Array.isArray(data) ? data : data.body || [])
+			} catch (error) {
+				console.error("Erro ao buscar agendamentos:", error)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		loadAgendamentos()
+	}, [])
 
     return (
         <div className={styles.dashboardWrapper}>
