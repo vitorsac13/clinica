@@ -86,19 +86,19 @@ export default function Dashboard() {
             <div className={styles.statsGrid}>
             <div className={styles.statCard}>
                 <h3>Consultas Hoje</h3>
-                <span>24</span>
+                <span>1</span>
             </div>
             <div className={styles.statCard}>
                 <h3>Pacientes Ativos</h3>
-                <span>1.284</span>
+                <span>50</span>
             </div>
             <div className={styles.statCard}>
                 <h3>Médicos</h3>
-                <span>12</span>
+                <span>4</span>
             </div>
             <div className={styles.statCard}>
                 <h3>Receita Mensal</h3>
-                <span>R$ 128.000</span>
+                <span>R$ 20.000</span>
             </div>
             </div>
 
@@ -110,24 +110,31 @@ export default function Dashboard() {
                 <tr>
                 <th>Paciente</th>
                 <th>Médico</th>
-                <th>Data</th>
+                <th>Data e Hora</th>
                 <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>João Silva</td>
-                <td>Dra. Maria</td>
-                <td>08/02/2026</td>
-                <td className={styles.statusConfirmado}>Confirmado</td>
-                </tr>
-                <tr>
-                <td>Ana Souza</td>
-                <td>Dr. Carlos</td>
-                <td>09/02/2026</td>
-                <td className={styles.statusPendente}>Pendente</td>
-                </tr>
-            </tbody>
+				{agendamentos.map((agendamento) => (
+					<tr key={agendamento._id}>
+					<td>{agendamento.paciente}</td>
+					<td>{agendamento.medico}</td>
+					<td>
+						{new Date(agendamento.data).toLocaleDateString("pt-BR")} -{" "}
+						{agendamento.hora}
+					</td>
+					<td
+						className={
+						agendamento.status === "Confirmado"
+							? styles.statusConfirmado
+							: styles.statusPendente
+						}
+					>
+						{agendamento.status}
+					</td>
+					</tr>
+				))}
+			</tbody>
             </table>
 
         {/* GOOGLE CALENDAR STYLE */}
